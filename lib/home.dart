@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(32.0),
+              padding: EdgeInsets.only(left: 32.0, right: 32.0, bottom: 12.0),
               child: Column(
                 children: [
                   Text(
@@ -93,11 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Icon(
                             Icons.exit_to_app,
                             color: Colors.greenAccent,
+                            size: 36,
                           ),
                         ),
                         Icon(
                           Icons.star,
                           color: Colors.greenAccent,
+                          size: 36,
                         ),
                       ],
                     ),
@@ -155,12 +157,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           Container(
                             width: 200,
-                            padding: const EdgeInsets.only(top: 4.0),
+                            padding: const EdgeInsets.only(top: 10.0),
                             child: Text(
                               'Damselfish driftwood catfish louvar bamboo shark, sandburrower treefish, great white shark. Pygmy sunfish marblefish paddlefish North American freshwater catfish, clownfish thornyhead spiderfish round herring sand lance mouthbrooder deepwater stingray Black sea bass soldierfish....',
                               textAlign: TextAlign.start,
                               style: TextStyle(
-                                fontSize: 12.0,
+                                fontSize: 14.0,
                                 color: Colors.white,
                               ),
                             ),
