@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  MyHomePage({Key? key, @required this.frase}) : super(key: key);
+
+  final frase;
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -51,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: [
                   Text(
-                    '"Não dá para acordar motivado todos os dias, mas da para acordar disciplinado todos os dias"',
+                    widget.frase['frase'],
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -71,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         Text(
-                          'Tallis Gomes',
+                          widget.frase['autor'],
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.greenAccent,
@@ -81,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           padding: const EdgeInsets.only(
                               top: 2.0, left: 4.0, right: 4.0),
                           child: Text(
-                            '@tallisgomes',
+                            widget.frase['usuario_rede_social'],
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.white60,
@@ -137,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Geração de Valor 3',
+                            widget.frase['nome_livro'],
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18.0,
@@ -147,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Padding(
                             padding: const EdgeInsets.only(top: 4.0),
                             child: Text(
-                              'Autor: Flávio Augusto',
+                              'Autor: ' + widget.frase['autor_livro'],
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 12.0,
@@ -159,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             width: 200,
                             padding: const EdgeInsets.only(top: 10.0),
                             child: Text(
-                              'Damselfish driftwood catfish louvar bamboo shark, sandburrower treefish, great white shark. Pygmy sunfish marblefish paddlefish North American freshwater catfish, clownfish thornyhead spiderfish round herring sand lance mouthbrooder deepwater stingray Black sea bass soldierfish....',
+                              widget.frase['resumo_livro'],
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 14.0,
