@@ -18,13 +18,45 @@ class MyApp extends StatelessWidget {
       // Initialize FlutterFire:
       future: getData(),
       builder: (context, snapshot) {
-        // Check for errors
         if (snapshot.hasError) {
-          // return SomethingWentWrong();
           return MaterialApp(
             title: 'Frases',
-            home: Container(
-              child: Text('Erro ao carregar o app!'),
+            home: Scaffold(
+              body: Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/BG.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Parece que algo deu errado :(',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Se esse problema persitir entre em contato conosco através do e-mail: atendimento@realzero.com.br',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           );
         }
@@ -46,8 +78,38 @@ class MyApp extends StatelessWidget {
         // return Loading();
         return MaterialApp(
           title: 'Frases',
-          home: Container(
-            child: Text('Carregando...'),
+          home: Scaffold(
+            body: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/BG.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Que bom te ver novamente ;)',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 48,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  CircularProgressIndicator(
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+                    backgroundColor: Colors.white,
+                  ),
+                ],
+              ),
+            ),
           ),
         );
       },
@@ -58,7 +120,7 @@ class MyApp extends StatelessWidget {
     await Firebase.initializeApp();
     return await FirebaseFirestore.instance
         .collection('frases')
-        .doc('UOJoWSeLfmEnOkCe4trB')
+        .doc('23032021')
         .get();
   }
 }

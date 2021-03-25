@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+// import 'package:url_launcher/url_launcher.dart';
+import 'package:badges/badges.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:drop_cap_text/drop_cap_text.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, @required this.frase}) : super(key: key);
+  MyHomePage({Key key, @required this.frase}) : super(key: key);
 
   final frase;
 
@@ -10,6 +14,55 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int qtdLike = 0;
+  void initState() {
+    qtdLike = widget.frase['likes'];
+    super.initState();
+  }
+
+  void updateLikes(likes) {
+    Map<String, dynamic> qtdLikes = {'likes': likes};
+    FirebaseFirestore.instance
+        .collection('frases')
+        .doc('23032021')
+        .update(qtdLikes);
+  }
+
+  String greeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Bom dia!';
+    }
+    if (hour < 18) {
+      return 'Boa tarde!';
+    }
+    return 'Boa noite!';
+  }
+
+  IconData icon() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return Icons.wb_sunny;
+    }
+    if (hour < 18) {
+      return Icons.wb_twighlight;
+    }
+    return Icons.bedtime;
+  }
+
+  // Future<void> _launchInBrowser(String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(
+  //       url,
+  //       forceSafariVC: false,
+  //       forceWebView: false,
+  //       headers: <String, String>{'my_header_key': 'my_header_value'},
+  //     );
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,14 +82,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.wb_twighlight,
+                      icon(),
                       color: Colors.greenAccent,
                       size: 36,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
-                        'Boa tarde!',
+                        greeting(),
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 32,
@@ -99,10 +152,27 @@ class _MyHomePageState extends State<MyHomePage> {
                             size: 36,
                           ),
                         ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.greenAccent,
-                          size: 36,
+                        GestureDetector(
+                          child: Badge(
+                            badgeContent: Text(qtdLike.toString()),
+                            badgeColor: Colors.white,
+                            child: IconButton(
+                              icon: const Icon(Icons.thumb_up_alt_rounded),
+                              color: Colors.greenAccent,
+                              onPressed: () {
+                                setState(() {
+                                  qtdLike++;
+                                  updateLikes(qtdLike);
+                                });
+                              },
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              qtdLike++;
+                              updateLikes(qtdLike);
+                            });
+                          },
                         ),
                       ],
                     ),
@@ -112,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Expanded(
               child: Container(
-                margin: EdgeInsets.only(top: 12.0),
+                margin: EdgeInsets.all(2.0),
                 height: 200,
                 decoration: BoxDecoration(
                   color: Colors.greenAccent,
@@ -124,56 +194,53 @@ class _MyHomePageState extends State<MyHomePage> {
                     topRight: Radius.circular(20),
                   ),
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.book_outlined,
-                      size: 200.0,
-                      color: Colors.white,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.frase['nome_livro'],
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Text(
+                          widget.frase['nome_livro'],
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          'Autor: ' + widget.frase['autor_livro'],
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: DropCapText(
+                          widget.frase['resumo_livro'],
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.white,
+                          ),
+                          dropCap: DropCap(
+                            width: 100,
+                            height: 100,
+                            child: Icon(
+                              Icons.book_outlined,
+                              size: 100.0,
                               color: Colors.white,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Text(
-                              'Autor: ' + widget.frase['autor_livro'],
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 200,
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Text(
-                              widget.frase['resumo_livro'],
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

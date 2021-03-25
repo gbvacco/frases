@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "569669155103",
-    "firebase_url": "https://frases-c03a6.firebaseio.com",
-    "project_id": "frases-c03a6",
-    "storage_bucket": "frases-c03a6.appspot.com"
+    "project_number": "793182217084",
+    "project_id": "frases-2e227",
+    "storage_bucket": "frases-2e227.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:569669155103:android:de0455b34878080056582a",
+        "mobilesdk_app_id": "1:793182217084:android:67289f2506be0e9ca4faf9",
         "android_client_info": {
           "package_name": "com.realzero.frases"
         }
       },
       "oauth_client": [
         {
-          "client_id": "569669155103-63r8il4hi89s1onu076b8brupfeo5f46.apps.googleusercontent.com",
+          "client_id": "793182217084-j6t0d4s11em45nr07tvpglllrj5m2pft.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAzlrFR-Wk56Mk1N5Bdf_o6Fj0SnAs57kM"
+          "current_key": "AIzaSyBBEj-xvdiRBScdZEGZ0DJm3La8hT14JmE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "569669155103-63r8il4hi89s1onu076b8brupfeo5f46.apps.googleusercontent.com",
+              "client_id": "793182217084-j6t0d4s11em45nr07tvpglllrj5m2pft.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
