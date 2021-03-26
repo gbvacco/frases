@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drop_cap_text/drop_cap_text.dart';
@@ -50,18 +50,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return Icons.bedtime;
   }
 
-  // Future<void> _launchInBrowser(String url) async {
-  //   if (await canLaunch(url)) {
-  //     await launch(
-  //       url,
-  //       forceSafariVC: false,
-  //       forceWebView: false,
-  //       headers: <String, String>{'my_header_key': 'my_header_value'},
-  //     );
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,29 +135,32 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 2.0, left: 4.0, right: 4.0),
-                          child: Text(
-                            widget.frase['usuario_rede_social'],
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white60,
+                              top: 2.0, left: 3.0, right: 1.0),
+                          child: InkWell(
+                            onTap: () => _launchInBrowser(
+                                widget.frase['link_usuario_rede_social']),
+                            child: Text(
+                              widget.frase['usuario_rede_social'],
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white60,
+                              ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(
-                            Icons.exit_to_app,
-                            color: Colors.greenAccent,
-                            size: 36,
-                          ),
+                        IconButton(
+                          icon: Icon(Icons.exit_to_app),
+                          color: Colors.greenAccent,
+                          onPressed: () {
+                            _launchInBrowser(widget.frase['autor_url']);
+                          },
                         ),
                         GestureDetector(
                           child: Badge(
                             badgeContent: Text(qtdLike.toString()),
                             badgeColor: Colors.white,
                             child: IconButton(
-                              icon: const Icon(Icons.thumb_up_alt_rounded),
+                              icon: Icon(Icons.thumb_up_alt_rounded),
                               color: Colors.greenAccent,
                               onPressed: () {
                                 setState(() {
@@ -195,51 +198,57 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Text(
-                          widget.frase['nome_livro'],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          'Autor: ' + widget.frase['autor_livro'],
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DropCapText(
-                          widget.frase['resumo_livro'],
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.white,
-                          ),
-                          dropCap: DropCap(
-                            width: 100,
-                            height: 100,
-                            child: Icon(
-                              Icons.book_outlined,
-                              size: 100.0,
+                  child: GestureDetector(
+                    onTap: () {
+                      _launchInBrowser(widget.frase['livro_url']);
+                    },
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                            widget.frase['nome_livro'],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
                               color: Colors.white,
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Text(
+                            'Autor: ' + widget.frase['autor_livro'],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DropCapText(
+                            widget.frase['resumo_livro'],
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.white,
+                            ),
+                            dropCap: DropCap(
+                              width: 100,
+                              height: 100,
+                              child: Icon(
+                                Icons.book_outlined,
+                                size: 100.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -232,10 +232,6 @@ PODS:
   - Firebase/Firestore (7.3.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 7.3.0)
-  - firebase_analytics (7.1.1):
-    - Firebase/Analytics (= 7.3.0)
-    - firebase_core
-    - Flutter
   - firebase_core (1.0.2):
     - Firebase/CoreOnly (= 7.3.0)
     - Flutter
@@ -333,15 +329,12 @@ PODS:
   - nanopb/decode (2.30906.0)
   - nanopb/encode (2.30906.0)
   - PromisesObjC (1.2.12)
-  - url_launcher (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
-  - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
+  - Firebase/Analytics
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
-  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 SPEC REPOS:
   trunk:
@@ -365,21 +358,16 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
-  firebase_analytics:
-    :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
-  url_launcher:
-    :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: 1546509577a699bf43c504dd88002753be2f4187
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
-  firebase_analytics: ee4abb07bfa857e7c95d97144efe9eb68be414cd
   firebase_core: e6cbb0d1f7091edfcae31559e58224bfc1e455dc
   FirebaseAnalytics: 2580c2d62535ae7b644143d48941fcc239ea897a
   FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
@@ -395,8 +383,7 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
-PODFILE CHECKSUM: 5766ae72531cacd93a14a532b1c806a8a60d15bf
+PODFILE CHECKSUM: 3b78e4c7c80b6c0fc1f696b522b1d52de24b7e36
 
 COCOAPODS: 1.10.1
