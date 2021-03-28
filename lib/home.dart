@@ -28,6 +28,34 @@ class _MyHomePageState extends State<MyHomePage> {
         .update(qtdLikes);
   }
 
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Dica'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                    'Caso você queira ler o livro indicado, basta clicar sobre o ícone do livro ou sobre o texto e você será redirecionado para a página aonde você podera baixar ou comprar o livro.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Entendi'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   String greeting() {
     var hour = DateTime.now().hour;
     if (hour < 12) {
@@ -200,7 +228,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: SingleChildScrollView(
                   child: GestureDetector(
                     onTap: () {
-                      _launchInBrowser(widget.frase['livro_url']);
+                      // _launchInBrowser(widget.frase['livro_url']);
+                      _showMyDialog();
                     },
                     child: Column(
                       children: [

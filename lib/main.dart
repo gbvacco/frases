@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,11 +10,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
   @override
   Widget build(BuildContext context) {
-    // print(query);
     return FutureBuilder(
       // Initialize FlutterFire:
       future: getData(),
@@ -118,10 +115,25 @@ class MyApp extends StatelessWidget {
   }
 
   Future<DocumentSnapshot> getData() async {
+    DateTime date = DateTime.now();
+    String today = '${date.day}${date.month}${date.year}';
+
     await Firebase.initializeApp();
+
+    FirebaseMessaging _messaging = FirebaseMessaging.instance;
+    await _messaging.requestPermission(
+      alert: true,
+      badge: true,
+      provisional: false,
+      sound: true,
+    );
+
+    _messaging.subscribeToTopic('all');
+    _messaging.getToken().then((token) => print(token));
+
     return await FirebaseFirestore.instance
         .collection('frases')
-        .doc('23032021')
+        .doc('2732021')
         .get();
   }
 }
