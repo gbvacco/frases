@@ -1,0 +1,14 @@
+# This is a generated file; do not edit or check into version control.
+cloud_firestore=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-1.0.2/
+cloud_firestore_web=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.2/
+firebase_analytics=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-7.1.1/
+firebase_analytics_web=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics_web-0.2.0+1/
+firebase_core=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.0.2/
+firebase_core_web=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.0.2/
+firebase_messaging=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-9.1.0/
+firebase_messaging_web=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging_web-1.0.3/
+url_launcher=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.3/
+url_launcher_linux=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-2.0.0/
+url_launcher_macos=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-2.0.0/
+url_launcher_web=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.0/
+url_launcher_windows=/Users/gbvacco/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-2.0.0/

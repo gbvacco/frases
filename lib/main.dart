@@ -10,11 +10,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  DateTime date = DateTime.now();
+  // String today = '${date.day}${date.month}${date.year}';
+  String today = '2732021';
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       // Initialize FlutterFire:
-      future: getData(),
+      future: getData(today),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return MaterialApp(
@@ -68,6 +71,7 @@ class MyApp extends StatelessWidget {
             ),
             home: MyHomePage(
               frase: snapshot.data,
+              today: today,
             ),
           );
         }
@@ -114,10 +118,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Future<DocumentSnapshot> getData() async {
-    DateTime date = DateTime.now();
-    String today = '${date.day}${date.month}${date.year}';
-
+  Future<DocumentSnapshot> getData(String messageDate) async {
     await Firebase.initializeApp();
 
     FirebaseMessaging _messaging = FirebaseMessaging.instance;
@@ -133,7 +134,7 @@ class MyApp extends StatelessWidget {
 
     return await FirebaseFirestore.instance
         .collection('frases')
-        .doc('2732021')
+        .doc(messageDate)
         .get();
   }
 }

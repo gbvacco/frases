@@ -5,9 +5,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drop_cap_text/drop_cap_text.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, @required this.frase}) : super(key: key);
+  MyHomePage({Key key, @required this.frase, @required this.today})
+      : super(key: key);
 
   final frase;
+  final today;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -15,6 +17,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int qtdLike = 0;
+
   void initState() {
     qtdLike = widget.frase['likes'];
     super.initState();
@@ -24,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Map<String, dynamic> qtdLikes = {'likes': likes};
     FirebaseFirestore.instance
         .collection('frases')
-        .doc('23032021')
+        .doc(widget.today)
         .update(qtdLikes);
   }
 
@@ -34,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Dica'),
+          title: Text('Dica da vez'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -95,6 +98,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          _showMyDialog();
+        },
+        label: const Text(
+          'Dicas',
+          style: TextStyle(color: Colors.green),
+        ),
+        icon: const Icon(
+          Icons.help,
+          color: Colors.green,
+        ),
+        backgroundColor: Colors.white,
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -228,8 +245,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: SingleChildScrollView(
                   child: GestureDetector(
                     onTap: () {
-                      // _launchInBrowser(widget.frase['livro_url']);
-                      _showMyDialog();
+                      _launchInBrowser(widget.frase['livro_url']);
                     },
                     child: Column(
                       children: [
