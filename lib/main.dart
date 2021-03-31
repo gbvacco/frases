@@ -9,10 +9,15 @@ void main() {
   runApp(MyApp());
 }
 
+String getTodayDate() {
+  DateTime today = new DateTime.now();
+  String dateSlug =
+      "${today.day.toString().padLeft(2, '0')}${today.month.toString().padLeft(2, '0')}${today.year.toString()}";
+  return dateSlug;
+}
+
 class MyApp extends StatelessWidget {
-  DateTime date = DateTime.now();
-  // String today = '${date.day}${date.month}${date.year}';
-  String today = '2732021';
+  String today = getTodayDate();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
