@@ -18,6 +18,7 @@ String getTodayDate() {
 
 class MyApp extends StatelessWidget {
   String today = getTodayDate();
+  // String today = '30032021';
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
